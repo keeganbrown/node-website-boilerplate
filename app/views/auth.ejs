@@ -1,0 +1,43 @@
+<% include partials/header %>
+<% include partials/mainnav %>
+	<div id="authentication" class="main-wrapper" data-editor-tags="new,dashboard">
+		<div class="container floating-header">
+			<% if ( show === 'login' ) { %>
+			<header class="text-center">
+				<h1>Are you me?</h1>
+				<p>I hope so. If you're not, please note that I'm recording this conversation.</p>
+			</header>
+			<section class="col-sm-6 col-sm-offset-3">
+				<form action="/auth/sendtoken/" method="POST">
+					<div class="input-group">
+		            	<input name="user" type="text" class="form-control">
+		            	<div class="input-group-btn"><button class="btn btn-primary" type="submit">Login <i class="fa fa-chevron-right"></i></button></div>
+		            </div>
+		        </form>
+			</section>
+			<% } else if ( show === 'sendtoken' ) { %>
+			<header class="text-center">
+				<h1>Login Info Sent.</h1>
+				<br/>
+				<p><a href="/auth/login/" data-forcerefresh="true" class="btn btn-primary">Login again <i class="fa fa-chevron-right"></i></a></p>
+			</header>
+			<% } else if ( show === 'dashboard' ) { %>
+			<header class="text-center">
+				<h1>Dashboard Page</h1>
+				<br/>
+				<p>You don&rsquo;t really need a dashboard. Let&rsquo;s be honest.</p>
+				<p>
+					<a href="/auth/logout/" data-forcerefresh="true" class="btn btn-primary">Logout <i class="fa fa-chevron-right"></i></a>
+					<a href="/auth/login/" data-forcerefresh="true" class="btn btn-primary">Login again <i class="fa fa-chevron-right"></i></a>
+				</p>
+			</header>
+			<% } else if ( show === 'loggedout' ) { %>
+			<header class="text-center">
+				<h1>Logged Out.</h1>
+				<br/>
+				<p><a href="/auth/login/" data-forcerefresh="true" class="btn btn-primary">Login again <i class="fa fa-chevron-right"></i></a></p>
+			</header>
+			<% } %>
+		</div>
+	</div>
+<% include partials/footer %>

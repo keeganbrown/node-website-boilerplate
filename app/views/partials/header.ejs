@@ -1,0 +1,39 @@
+<%
+var pagetitle = striptags(( (!!locals.title) ? title+" | " : "" )+"Mind & Code"),
+	sitename = 'Mind & Code',
+	pagedesc = striptags((!!locals.description) ? description : "Meditations on web development, programming, philosophy and the mind."),
+	pageurl = 'http://mindandcode.com'+((!!locals.url) ? url : "");
+
+if ( !locals.pjax ) {
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= pagetitle %></title>
+	<meta name="description" content="<%= pagedesc %>" />
+
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+	<meta property="og:site_name" content="<%= sitename %>" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="<%= pagetitle %>" />
+	<meta property="og:description" content="<%= pagedesc %>" />
+	<meta property="og:url" content="<%= pageurl %>" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="<%= pagetitle %>" />
+	<meta name="twitter:description" content="<%= pagedesc %>" />
+	<meta name="twitter:url" content="<%= pageurl %>" />    
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="//fonts.googleapis.com/css?family=Lato:200,400,700|Hind:400,700" rel="stylesheet" type="text/css">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/bin/main.css">
+	<% if ( locals.loggedInUser ) { %>
+	<link rel="stylesheet" href="/bin/editor.css">
+	<% } %>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+<% } %>

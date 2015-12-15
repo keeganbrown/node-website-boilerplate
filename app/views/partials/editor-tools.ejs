@@ -1,0 +1,12 @@
+<% if ( locals.loggedInUser ) { %>
+<div id="usertools">
+	<nav class="btn-group">
+		<a id="delete-btn" href="../delete/" class="btn btn-lg btn-info" title="Delete Post"><i class="fa fa-minus-circle"></i></a>
+		<a id="new-btn" href="/posts/new/" class="btn btn-lg btn-info" title="New Post"><i class="fa fa-plus"></i></a>
+		<a id="edit-btn" href="./edit/" class="btn btn-lg btn-info" title="Edit Post"><i class="fa fa-pencil"></i></a>
+		<a id="save-btn" href="/auth/save/" class="btn btn-lg btn-info" title="Save Post"><i class="fa fa-check"></i></a>
+		<a id="dashboard-btn" href="/auth/dashboard/" class="btn btn-lg btn-info" title="Dashboard"><i class="fa fa-cog"></i></a>
+	</nav>
+</div>
+<script src="/bin/editor.js"></script>
+<% } %>

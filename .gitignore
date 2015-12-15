@@ -1,0 +1,12 @@
+environment.json
+duh.txt
+secrets
+public/bin
+*.sublime-project
+/node_modules
+# config.js
+/vagrant/.vagrant/
+npm-debug.log
+log/nginx_access.log
+*.log
+nohup.out

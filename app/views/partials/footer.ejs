@@ -1,0 +1,18 @@
+<% if ( !locals.pjax ) { %>
+</div> <!-- #pjax-wrap -->
+<div class="site-footer">
+	<footer>
+		<p>&copy; <%= (new Date()).getFullYear() %> Keegan Brown, Mind and Code, LLC</p>
+	</footer>
+</div>
+
+	</div><!-- row -->
+</div><!-- container-fluid -->
+<% if ( !locals.loggedInUser ) { %>
+<script src="/bin/main.js"></script>
+<% } else { %>
+<% include editor-tools %>
+<% } %>
+</body>
+</html>
+<% } %>

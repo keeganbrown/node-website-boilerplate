@@ -1,0 +1,51 @@
+# the IP(s) on which your node server is running. I chose port 3000.
+upstream mindandcode {
+  server unix:///var/run/mindandcode/mindandcode.sock;
+}
+
+# the nginx server instance
+server {
+    listen 0.0.0.0:80;
+    server_name www.mindandcode.com mindandcode.com mindandcode;
+    access_log /var/log/nginx/mindandcode.log;
+
+    gzip on;
+    gzip_comp_level 6;
+    gzip_vary on;
+    gzip_min_length  1000;
+    gzip_proxied any;
+    gzip_types text/plain text/html text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_buffers 16 8k;
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+
+    # pass the request to the node.js server with the correct headers
+    # and much more can be added, see nginx config options
+
+
+    access_log /mindandcode.com/log/nginx_access.log;
+    error_log  /mindandcode.com/log/nginx_error.log;
+    root     /mindandcode.com/public;
+    index    index.html;
+
+    location / {
+      proxy_set_header   X-Real-IP         $remote_addr;
+      proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+      proxy_set_header   Host              $http_host;
+      proxy_set_header   X-NginX-Proxy     true;
+
+      proxy_redirect  off;
+
+      proxy_temp_path /var/tmp;
+      proxy_cache_key sfs$request_uri$scheme;
+
+      proxy_intercept_errors on;
+      error_page 404 500 502 503 504 error.html;
+
+      try_files /system/maintenance.html $uri $uri/index.html $uri.html @nodejs;
+    }
+
+    location @nodejs {
+      proxy_pass http://mindandcode;
+    }
+}
